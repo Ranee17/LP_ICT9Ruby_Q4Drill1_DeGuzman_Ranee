@@ -16,7 +16,7 @@
     .container{
         background: white;
         padding: 20px;
-        width: 300px;
+        width: 400px;
         margin: auto;
         border: 1px solid #ccc;
     }
@@ -43,73 +43,86 @@
 <body>
 
     <div class="container">
-        <h2> Student Score Evaluator </h2>
+        <h2> Electricity Consumption Classifier </h2>
+        
+        <img src="https://img.freepik.com/premium-vector/bolt-icon-vector-illustration-design_1948-8308.jpg" style="width: 50%;">
+        
+    
+        
 
-        <input type="number" id="score" placeholder="Enter Score (0-100)">
+        <input type="number" id="kw" placeholder="Enter kilowat per hour">
         <br>
 
-        <button onclick="evaluateScore()">EVALUATE</button>
+        <button onclick="evaluateKW()">Consumption Classification</button>
 
             <div class="output">
                      <p id="status"> </p>
-                    <p id="grade"> </p>
+                    <p id="CON"> </p>
               </div>
 
      </div>
 
 <script>
-        function evaluateScore()
-         {
-            var score = document.getElementById("score").value;
+        function evaluateKW()
+{
+    var kw = document.getElementById("kw").value;
 
-            if(score=== ""){
-                alert("Please enter a score.");
-                return;
-            }
+    if(kw === ""){
+        alert("Please enter kilowatt.");
+        return;
+    }
 
-            score = Number(score);
-            var status = "";
+    kw = Number(kw);
+    var status = "";
 
-            if(score >= 75){
-                status = "Status: PASSED";
-            }else{
-                status = "Status: Womp Womp (FAIL!)";
-            }
+    if(kw >= 301){
+        status = "Status: High Consumption";
+    }else{
+        status = "Status: Low/Average Consumption";
+    }
 
-                var grade = ""
-                if(score>="98"){
-                    grade="A";
-                }else if(score>=80){
-                    grade="B";
-                }else if(score>=75){
-                    grade="C";
-                }else{
-                    grade="F"; 
-                }
+    var CON = "";
 
-                var remark = "";
-                switch(grade){
-                case "A":
-                remark="| Nice one!"
-                break;
+    if(kw > 500){
+        CON = "Very High";
+    }else if(kw >= 301){
+        CON = "High";
+    }else if (kw >=201){
+        Con = "Average";
+    }else if(kw >= 101){
+        CON = "Low";
+    }else{
+        CON = "Lifeline";
+    }
 
-                case "B":
-                remark="| Good!"
-                break;
+    var remark = "";
 
-                case "C":
-                remark="| Study..."
-                break;
+    switch(CON){
 
-                case "F":
-                remark="| Study more... "
-                break;
-                }
+        case "Very High":
+        remark="|Heavy electricity usage";
+        break;
+        
+        case "High":
+        remark="| Higher electricity usage ";
+        break;
 
-                document.getElementById("status").innerHTML = status;
-                document.getElementById("grade").innerHTML ="Grade: " + grade + " " + remark;
+        case "Average":
+        remark="| Typical electricity usage";
+        break;
 
-            }
+        case "Low":
+        remark="| Normal residential rate";
+        break;
+
+        case "Lifeline":
+        remark="| Discounted electricity rates";
+        break;
+    }
+
+    document.getElementById("status").innerHTML = status;
+    document.getElementById("CON").innerHTML = "Category: " + CON + " " + remark;
+}
 
      </script>
 
